@@ -1,0 +1,11 @@
+.th-input-error {
+    margin: 0;
+    padding: 7px 0;
+    color: tomato;
+}
+.alertBlock {
+    position: fixed;
+    z-index: 99;
+    bottom: 5px;
+    right: 20px;
+}

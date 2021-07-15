@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">Project Management</title>
+
+  <link rel="icon" href="/assets/images/favicon.ico">
+
+  <!-- Messgaes CSS -->
+<!--  <link href="/assets/css/pages/messages.css" rel="stylesheet">-->
+
+  <!-- Base CSS -->
+  <link rel="stylesheet" href="/assets/css/basestyle/style.css">
+  <link rel="stylesheet" href="/assets/css/basestyle/custom.css">
+
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- ekko-lightbox CSS -->
+<!--  <link rel="stylesheet" href="/assets/css/ekko-lightbox/ekko-lightbox.css">-->
+</head>
+<body>
+  <th:block th:replace="fragments/loader :: loader"></th:block>
+
+  <div layout:fragment="content">
+    <p>Body contents</p>
+  </div>
+
+  <th:block th:replace="fragments/alertFragment :: alert"></th:block>
+
+  <script src="/assets/js/lib/moment.min.js"></script>
+  <script src="/assets/js/lib/jquery.min.js"></script>
+  <script src="/assets/js/lib/popper.min.js"></script>
+  <script src="/assets/js/bootstrap/bootstrap.min.js"></script>
+  <script src="/assets/js/chosen-js/chosen.jquery.js"></script>
+  <script src="/assets/js/ekko-lightbox/ekko-lightbox.js"></script>
+  <script src="/assets/js/custom.js"></script>
+</body>
+</html>

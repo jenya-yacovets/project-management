@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/mainLayout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Authentication</title>
+</head>
+<body>
+    <section class="wrapper" layout:fragment="content">
+
+        <link href="/assets/css/pages/login.css" rel="stylesheet">
+
+        <div class="login">
+            <div class="image-placeholder">
+                <h1>Lorem ipsum dolor sit amet<br>consectetur pellentesque adipiscing elit.</h1>
+            </div>
+            <div class="form">
+
+            <h3 class="h4 mb-5 text-center">Authentication</h3>
+
+                <form action="#" th:action="@{/security/authentication}" th:object="${userModel}" method="post">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email or Username</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email or Username" th:field="*{emailOrUsername}">
+                        <p class="th-input-error" th:each="error: ${#fields.errors('emailOrUsername')}" th:text="${error}">Validation error</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" th:field="*{password}">
+                        <p class="th-input-error" th:each="error: ${#fields.errors('password')}" th:text="${error}">Validation error</p>
+                    </div>
+                    <div class="form-group form-check">
+                        <a href="/security/password-recovery" data-target="#forgotPassword" class="float-right">Forget your password?</a>
+                    </div>
+                    <button class="btn mt-4 btn-primary btn-block" type="submit">Login</button>
+                    <br>
+                    <p style="color: tomato" th:if="${param.error}">The username or password is entered incorrectly</p>
+                    <p style="color: orange" th:if="${param.logout}">You have been logged out</p>
+                </form>
+
+        </div>
+    </div>
+</section>
+</body>
+</html>
