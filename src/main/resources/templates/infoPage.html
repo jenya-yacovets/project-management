@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/mainLayout}">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${title}"></title>
+</head>
+<body>
+<section class="wrapper" layout:fragment="content">
+  <div class="content-wrapper">
+    <div class="content text-center">
+
+      <h3 class="display-1 weight-400 mt-5" style="font-size: 3rem;" th:text="${text}"></h3>
+
+      <a href="/home" class="btn btn-primary px-4 mt-4 rounded">Go Back Home</a>
+    </div>
+  </div>
+</section>
+</body>
+</html>

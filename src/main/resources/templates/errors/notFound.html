@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/mainLayout}">
+<head>
+  <meta charset="UTF-8">
+  <title>Page not found</title>
+</head>
+<body>
+  <section class="wrapper" layout:fragment="content">
+    <div class="content-wrapper">
+
+      <div class="content text-center">
+
+        <h1 class="display-1 weight-400 mt-5" style="font-size: 10rem;">404</h1>
+        <p class="lead mb-2">The Page you requested does not exist</p>
+
+        <p class="text-muted small">Check that the address you entered is correct.<br>Or contact technical support.</p>
+
+        <a href="/home" class="btn btn-primary px-4 mt-4 rounded">Go Back Home</a>
+
+      </div>
+    </div>
+  </section>
+</body>
+</html>

@@ -27,22 +27,23 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotBlank
     @Column(unique = true)
     private String username;
 
     private String password;
 
     @Email
-    @NotBlank
     @Column(unique = true)
     private String email;
+
+    @Column(columnDefinition = "boolean default false")
+    private boolean isEmailVerified;
 
     private UserStatusEnum status;
 
     private boolean active;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<UserRole> roles;
 
     @LastModifiedDate

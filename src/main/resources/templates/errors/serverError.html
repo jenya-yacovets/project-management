@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/mainLayout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Server error</title>
+</head>
+<body>
+<section class="wrapper" layout:fragment="content">
+    <div class="content-wrapper">
+
+        <div class="content text-center">
+
+            <h1 class="display-1 weight-400 mt-5" style="font-size: 10rem;">500</h1>
+            <p class="lead mb-2">Ooops! Somthing went wrong :(</p>
+
+            <p class="text-muted small">Repeat the request after a while.<br>Or contact technical support.</p>
+
+            <a href="/home" class="btn btn-primary px-4 mt-4 rounded">Go Back Home</a>
+
+        </div>
+    </div>
+</section>
+</body>
+</html>

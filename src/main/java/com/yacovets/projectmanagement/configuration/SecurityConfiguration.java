@@ -27,7 +27,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .csrf().ignoringAntMatchers("/db/**")
                 .and()
                 .authorizeRequests()
-                .antMatchers("/", "/security/registration", "/security/password-recovery", "/assets/**", "/db/**")
+                .antMatchers(
+                        "/db/**",
+                        "/assets/**",
+                        "/security/registration",
+                        "/security/password-recovery",
+                        "/security/password-recovery/*",
+                        "/security/email-verification/*"
+                )
                 .permitAll()
                 .anyRequest()
                 .authenticated()
@@ -35,7 +42,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/security/authentication")
                 .usernameParameter("emailOrUsername")
-                .defaultSuccessUrl("/profile", true)
+                .defaultSuccessUrl("/home", true)
                 .permitAll()
                 .and().headers().frameOptions().sameOrigin()
                 .and()
@@ -47,7 +54,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Bean
     public PasswordEncoder encoder(){
-        return new BCryptPasswordEncoder(10);
+        return new BCryptPasswordEncoder(12);
     }
 
     @Override

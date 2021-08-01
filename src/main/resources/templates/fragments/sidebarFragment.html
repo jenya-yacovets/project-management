@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sidebar</title>
+</head>
+<body>
+<aside class="sidebar" th:fragment="sidebar">
+  <nav class="navbar navbar-dark bg-primary">
+    <a class="navbar-brand m-0 py-2 brand-title" href="/">Project Management</a>
+    <span></span>
+    <a class="navbar-brand py-2 material-icons toggle-sidebar" href="#">menu</a>
+  </nav>
+
+  <nav class="navigation" >
+    <ul>
+      <li class=""><a href="/home" title="Home"><span class="nav-icon material-icons">public</span> Home</a></li>
+    </ul>
+
+    <label title="Projects & Boards"><span>Projects & Boards</span></label>
+    <ul>
+      <li>
+        <a href="#" title="Projects"><span class="nav-icon material-icons ">assignment</span> Projects <span class="toogle-sub-nav material-icons">keyboard_arrow_right</span></a>
+        <ul class="sub-nav">
+          <li><a href="/project/list" title="Project list">Project list</a></li>
+          <li><a href="/project/create" title="Create project">Create project</a></li>
+        </ul>
+      </li>
+      <li class="Form Stuff">
+        <a href="#" title="Boards"><span class="nav-icon material-icons">dashboard</span> Boards <span class="toogle-sub-nav material-icons">keyboard_arrow_right</span></a>
+        <ul class="sub-nav">
+          <li><a href="/board/list" title="Project list">Board list</a></li>
+          <li><a href="/board/create" title="Create project">Create board</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <label title="Other"><span>Other</span></label>
+    <ul>
+      <li>
+        <a href="#" title="Profile"><span class="nav-icon material-icons">school</span> Profile <span class="toogle-sub-nav material-icons">keyboard_arrow_right</span></a>
+        <ul class="sub-nav">
+          <li><a href="/profile" title="Show Profile">Show Profile</a></li>
+        </ul>
+      </li>
+    </ul>
+
+  </nav>
+
+</aside>
+</body>
+</html>

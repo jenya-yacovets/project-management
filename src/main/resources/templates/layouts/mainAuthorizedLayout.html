@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">Project Management</title>
+
+  <link rel="icon" href="/assets/images/favicon.ico">
+
+  <!-- Base CSS -->
+  <link rel="stylesheet" href="/assets/css/basestyle/style.css">
+  <link rel="stylesheet" href="/assets/css/basestyle/custom.css">
+
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+<body>
+  <th:block th:replace="fragments/loaderFragment :: loader"></th:block>
+
+  <section class="wrapper">
+    <th:block th:replace="fragments/sidebarFragment :: sidebar"></th:block>
+    <div class="content-area">
+      <th:block th:replace="fragments/headerFragment :: header"></th:block>
+
+      <div class="content-wrapper">
+
+        <th:block layout:fragment="content"></th:block>
+
+        <th:block th:replace="fragments/footerFragment :: footer"></th:block>
+
+      </div>
+
+
+
+    </div>
+  </section>
+
+  <th:block layout:fragment="modal"></th:block>
+
+  <th:block th:replace="fragments/alertFragment :: alert"></th:block>
+
+  <script src="/assets/js/lib/moment.min.js"></script>
+  <script src="/assets/js/lib/jquery.min.js"></script>
+  <script src="/assets/js/lib/popper.min.js"></script>
+  <script src="/assets/js/bootstrap/bootstrap.min.js"></script>
+  <script src="/assets/js/chosen-js/chosen.jquery.js"></script>
+  <script src="/assets/js/ekko-lightbox/ekko-lightbox.js"></script>
+  <script src="/assets/js/custom.js"></script>
+</body>
+</html>
