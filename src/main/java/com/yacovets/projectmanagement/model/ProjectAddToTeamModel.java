@@ -12,6 +12,6 @@ import javax.validation.constraints.NotBlank;
 @Data
 public class ProjectAddToTeamModel {
     @NotBlank
-    @Length(min = 3, max = 25)
+    @Length(min = 3, max = 30)
     private String emailOrUsername;
 }

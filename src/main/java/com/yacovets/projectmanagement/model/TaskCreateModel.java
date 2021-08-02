@@ -21,6 +21,6 @@ public class TaskCreateModel {
     private TaskPriorityEnum priority;
 
     @NotBlank(message = "Required for entering")
-    @Length(min = 3, max = 500, message = "The length of the task must be from 3 to 500 characters")
+    @Length(min = 3, max = 5000, message = "The length of the task must be from 3 to 5000 characters")
     private String task;
 }

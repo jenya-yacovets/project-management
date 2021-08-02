@@ -12,10 +12,10 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 public class UserSetPasswordModel {
     @NotBlank(message = "Required for entering")
-    @Length(min = 3, max = 25, message = "The length of the password must be from 3 to 25 characters")
+    @Length(min = 3, max = 30, message = "The length of the password must be from 3 to 30 characters")
     private String password;
 
     @NotBlank(message = "Required for entering")
-    @Length(min = 3, max = 25, message = "The length of the password confirmation must be from 3 to 25 characters")
+    @Length(min = 3, max = 30, message = "The length of the password confirmation must be from 3 to 30 characters")
     private String passwordConfirmation;
 }

@@ -13,19 +13,19 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 public class UserRegistrationModel {
     @NotBlank(message = "Required for entering")
-    @Length(min = 3, max = 25, message = "The length of the username must be from 3 to 25 characters")
+    @Length(min = 3, max = 30, message = "The length of the username must be from 3 to 30 characters")
     private String username;
 
     @NotBlank(message = "Required for entering")
-    @Length(min = 3, max = 25, message = "The length of the email must be from 4 to 25 characters")
+    @Length(min = 3, max = 30, message = "The length of the email must be from 4 to 30 characters")
     @Email(message = "Enter the correct email address")
     private String email;
 
     @NotBlank(message = "Required for entering")
-    @Length(min = 3, max = 25, message = "The length of the password must be from 3 to 25 characters")
+    @Length(min = 3, max = 30, message = "The length of the password must be from 3 to 30 characters")
     private String password;
 
     @NotBlank(message = "Required for entering")
-    @Length(min = 3, max = 25, message = "The length of the password confirmation must be from 3 to 25 characters")
+    @Length(min = 3, max = 30, message = "The length of the password confirmation must be from 3 to 30 characters")
     private String passwordConfirmation;
 }

@@ -23,7 +23,7 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false, length = 500)
+    @Column(nullable = false, length = 5000)
     private String text;
 
     private TaskPriorityEnum priority;

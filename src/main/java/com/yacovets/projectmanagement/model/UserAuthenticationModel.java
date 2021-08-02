@@ -12,10 +12,10 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 public class UserAuthenticationModel {
     @NotBlank(message = "Required for entering")
-    @Length(min = 3, max = 25, message = "The length of the email/username must be from 3 to 25 characters")
+    @Length(min = 3, max = 30, message = "The length of the email/username must be from 3 to 30 characters")
     private String emailOrUsername;
 
     @NotBlank(message = "Required for entering")
-    @Length(min = 3, max = 25, message = "The length of the username must be from 3 to 25 characters")
+    @Length(min = 3, max = 30, message = "The length of the username must be from 3 to 30 characters")
     private String password;
 }

@@ -25,7 +25,7 @@ public class Project {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false, length = 500)
+    @Column(nullable = false, length = 5000)
     private String description;
 
     @ManyToOne

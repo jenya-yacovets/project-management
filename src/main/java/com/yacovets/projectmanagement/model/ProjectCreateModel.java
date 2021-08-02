@@ -12,14 +12,14 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 public class ProjectCreateModel {
     @NotBlank(message = "Required for entering")
-    @Length(min = 3, max = 25, message = "The length of the alias must be from 3 to 25 characters")
+    @Length(min = 3, max = 30, message = "The length of the alias must be from 3 to 30 characters")
     private String alias;
 
     @NotBlank(message = "Required for entering")
-    @Length(min = 3, max = 25, message = "The length of the name must be from 3 to 25 characters")
+    @Length(min = 3, max = 30, message = "The length of the name must be from 3 to 30 characters")
     private String name;
 
     @NotBlank(message = "Required for entering")
-    @Length(min = 3, max = 500, message = "The length of the description must be from 3 to 500 characters")
+    @Length(min = 3, max = 5000, message = "The length of the description must be from 3 to 5000 characters")
     private String description;
 }

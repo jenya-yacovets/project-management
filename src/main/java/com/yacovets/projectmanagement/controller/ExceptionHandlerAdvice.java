@@ -12,7 +12,6 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 @Slf4j
 @ControllerAdvice
 public class ExceptionHandlerAdvice {
-
     @ExceptionHandler({NoHandlerFoundException.class, DataNotFoundControllerException.class})
     public ModelAndView notFountExceptionHandler(Exception e) {
         log.warn("Not found handler or data:", e);
@@ -30,5 +29,4 @@ public class ExceptionHandlerAdvice {
         log.error("Server error:", e);
         return new ModelAndView("errors/serverError", HttpStatus.INTERNAL_SERVER_ERROR);
     }
-
 }

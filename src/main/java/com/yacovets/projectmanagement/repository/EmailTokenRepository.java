@@ -11,4 +11,5 @@ import java.util.UUID;
 public interface EmailTokenRepository extends JpaRepository<EmailToken, UUID> {
     Optional<EmailToken> findByIdAndAndIsUsedAndExpiredAtGreaterThanEqualAndType(UUID id, boolean used, LocalDateTime createdAt, EmailTokenTypeEnum type);
     boolean existsByIdAndAndIsUsedAndExpiredAtGreaterThanEqualAndType(UUID id, boolean used, LocalDateTime createdAt, EmailTokenTypeEnum type);
+    Optional<EmailToken> findByUserUsernameAndType(String username, EmailTokenTypeEnum type);
 }

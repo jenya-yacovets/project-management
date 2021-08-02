@@ -10,6 +10,7 @@ import com.yacovets.projectmanagement.service.exception.EmailIsBusyServiceExcept
 import com.yacovets.projectmanagement.service.exception.EmailTokenNotFoundServiceException;
 import com.yacovets.projectmanagement.service.exception.UserNotFoundServiceException;
 import com.yacovets.projectmanagement.service.exception.UsernameIsBusyServiceException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -65,16 +66,19 @@ public class SecurityController {
     @GetMapping("/email-verification/{token}")
     public ModelAndView emailVerification(@PathVariable UUID token) {
         String message;
-
+        HttpStatus status;
         try {
             securityService.emailVerification(token);
             message = "Email has been successfully verified";
+            status = HttpStatus.OK;
         } catch (EmailTokenNotFoundServiceException e) {
             message = "The email could not be verified. Invalid link or the verification time has expired. Send a new email from your personal account";
+            status = HttpStatus.BAD_REQUEST;
         }
 
         ModelAndView model = new ModelAndView("infoPage", "text", message);
         model.addObject("title", "Email verification");
+        model.setStatus(status);
         return model;
     }
 
