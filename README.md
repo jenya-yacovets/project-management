@@ -1,6 +1,6 @@
-#Project management
+# Project management
 
-###Description: A Java application for working in a team. You can create projects, invite other registered users to projects. In the project, you can create many boards for different directions. In the boards, you can add tasks, select an artist and set the importance of the task. When adding to a team or task, the user receives an email.
+### Description: A Java application for working in a team. You can create projects, invite other registered users to projects. In the project, you can create many boards for different directions. In the boards, you can add tasks, select an artist and set the importance of the task. When adding to a team or task, the user receives an email.
 
 ### Demo
 #### Registration page:
