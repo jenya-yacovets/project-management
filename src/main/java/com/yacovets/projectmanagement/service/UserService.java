@@ -1,15 +1,11 @@
 package com.yacovets.projectmanagement.service;
 
-import com.yacovets.projectmanagement.entity.Board;
-import com.yacovets.projectmanagement.entity.Project;
-import com.yacovets.projectmanagement.entity.Task;
-import com.yacovets.projectmanagement.entity.User;
+import com.yacovets.projectmanagement.entity.*;
 import com.yacovets.projectmanagement.model.HomePageDataModel;
 import com.yacovets.projectmanagement.repository.BoardRepository;
 import com.yacovets.projectmanagement.repository.ProjectRepository;
 import com.yacovets.projectmanagement.repository.TaskRepository;
 import com.yacovets.projectmanagement.repository.UserRepository;
-import com.yacovets.projectmanagement.util.CollectionUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,14 +21,12 @@ public class UserService {
     private final ProjectRepository projectRepository;
     private final BoardRepository boardRepository;
     private final TaskRepository taskRepository;
-    private final CollectionUtil collectionUtil;
 
-    public UserService(UserRepository userRepository, ProjectRepository projectRepository, BoardRepository boardRepository, TaskRepository taskRepository, CollectionUtil collectionUtil) {
+    public UserService(UserRepository userRepository, ProjectRepository projectRepository, BoardRepository boardRepository, TaskRepository taskRepository) {
         this.userRepository = userRepository;
         this.projectRepository = projectRepository;
         this.boardRepository = boardRepository;
         this.taskRepository = taskRepository;
-        this.collectionUtil = collectionUtil;
     }
 
     public Optional<User> getUser(long id) {
@@ -50,7 +44,23 @@ public class UserService {
 
         List<Task> taskList = taskRepository.findAllByBoardProjectTeams(user);
         model.setTasks(taskList);
-        model.setCountTaskCompleted(taskList.stream().filter(item -> item.getCompletionAt() != null).count());
+
+        int taskListSize = taskList.size();
+
+        if (taskListSize > 0) {
+            int countTaskCompleted = (int) taskList.stream().filter(item -> item.getCompletionAt() != null).count();
+            model.setIndexCompletedStatusTasks(countTaskCompleted * 100 / taskListSize);
+            model.setIndexInProcessingStatusTasks(100 - model.getIndexCompletedStatusTasks());
+
+            int countLittlePriorityTasks = (int) taskList.stream().filter(item -> item.getPriority().equals(TaskPriorityEnum.LITTLE)).count();
+            model.setIndexLittlePriorityTasks(countLittlePriorityTasks * 100 / taskListSize);
+
+            int countMediumPriorityTasks = (int) taskList.stream().filter(item -> item.getPriority().equals(TaskPriorityEnum.MEDIUM)).count();
+            model.setIndexMediumPriorityTasks(countMediumPriorityTasks * 100 / taskListSize);
+
+            int countLargePriorityTasks = (int) taskList.stream().filter(item -> item.getPriority().equals(TaskPriorityEnum.LARGE)).count();
+            model.setIndexLargePriorityTasks(countLargePriorityTasks * 100 / taskListSize);
+        }
 
         return model;
     }

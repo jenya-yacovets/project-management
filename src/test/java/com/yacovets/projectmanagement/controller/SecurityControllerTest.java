@@ -1,4 +1,4 @@
-package com.yacovets.projectmanagement.service;
+package com.yacovets.projectmanagement.controller;
 
 import com.yacovets.projectmanagement.entity.EmailToken;
 import com.yacovets.projectmanagement.entity.EmailTokenTypeEnum;
@@ -12,6 +12,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -20,7 +21,7 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 @SpringBootTest
 @AutoConfigureMockMvc
 @TestMethodOrder(value = MethodOrderer.OrderAnnotation.class)
-class SecurityServiceTest {
+class SecurityControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
@@ -152,3 +153,4 @@ class SecurityServiceTest {
         ).andExpect(redirectedUrl("/home"));
     }
 }
+

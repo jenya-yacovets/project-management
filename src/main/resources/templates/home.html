@@ -60,29 +60,28 @@
             <div class="col-lg-4 mb-4">
 
                 <div class="card h-100">
-                    <div class="card-header">Money Analysis</div>
+                    <div class="card-header">Ratio of tasks by priority</div>
                     <div class="card-body ">
-                        <h3 class="weight-400 text-center mb-0"><span class="material-icons mr-2 text-success">arrow_upward</span>$73,239.00</h3>
-                        <p class="text-muted text-center">Lorem ipsum dolor sit amet</p>
+
                         <canvas id="chart-doughnut" height="200"></canvas>
 
                         <div class="row mt-4">
                             <div class="col">
-                                <small>Europe</small>
+                                <small>Little</small>
                                 <div class="progress mt-1" style="height: 6px;">
-                                    <div class="progress-bar" role="progressbar" style="width: 35%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar" role="progressbar" th:style="${'width: ' + projectsAndBoardsAndTasks.indexLittlePriorityTasks + '%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
                             <div class="col">
-                                <small>Asia</small>
+                                <small>Large</small>
                                 <div class="progress mt-1" style="height: 6px;">
-                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 75%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-warning" role="progressbar" th:style="${'width: ' + projectsAndBoardsAndTasks.indexLargePriorityTasks + '%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
                             <div class="col">
-                                <small>Other</small>
+                                <small>Medium</small>
                                 <div class="progress mt-1" style="height: 6px;">
-                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 45%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-danger" role="progressbar" th:style="${'width: ' + projectsAndBoardsAndTasks.indexMediumPriorityTasks + '%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
                         </div>
@@ -100,14 +99,14 @@
                     <div class="card-header">Tasks in progress</div>
                     <div class="card-body">
 
-                        <p class="">Tasks completed <small class="text-muted">75% completed</small></p>
+                        <p class="">Tasks completed <small class="text-muted" th:text="${projectsAndBoardsAndTasks.indexCompletedStatusTasks + '% completed'}">Completed</small></p>
                         <div class="progress">
-                            <div class="progress-bar bg-success progress-bar-striped" role="progressbar" style="width: 45%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar bg-success progress-bar-striped" role="progressbar" th:style="${'width: ' + projectsAndBoardsAndTasks.indexCompletedStatusTasks + '%'}" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
 
-                        <p class="">Tasks in progress <small class="text-muted">75% in progress</small></p>
+                        <p class="">Tasks in progress <small class="text-muted" th:text="${projectsAndBoardsAndTasks.indexInProcessingStatusTasks + '% in progress'}">In progress</small></p>
                         <div class="progress">
-                            <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 75%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar progress-bar-striped" role="progressbar" th:style="${'width: ' + projectsAndBoardsAndTasks.indexInProcessingStatusTasks + '%'}" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
 
                     </div>
@@ -148,6 +147,66 @@
             </div>
         </div>
     </div>
+
+    <script src="assets/js/chartjs/Chart.js"></script>
+    <script src="assets/js/chartjs/utils.js"></script>
+
+    <meta name="indexLittlePriorityTasks" th:content="${projectsAndBoardsAndTasks.indexLittlePriorityTasks}"/>
+    <meta name="indexMediumPriorityTasks" th:content="${projectsAndBoardsAndTasks.indexMediumPriorityTasks}"/>
+    <meta name="indexLargePriorityTasks" th:content="${projectsAndBoardsAndTasks.indexLargePriorityTasks}"/>
+
+    <script>
+        window.onload = function() {
+            const color = Chart.helpers.color;
+
+            const indexLittlePriorityTasks = $("meta[name='indexLittlePriorityTasks']").attr("content")
+            const indexMediumPriorityTasks = $("meta[name='indexMediumPriorityTasks']").attr("content")
+            const indexLargePriorityTasks = $("meta[name='indexLargePriorityTasks']").attr("content")
+
+            const ctxDoughnut = document.getElementById('chart-doughnut').getContext('2d');
+            window.myDoughnut = new Chart(ctxDoughnut, {
+                type: 'doughnut',
+                data: {
+                    datasets: [{
+                        data: [
+                            indexLargePriorityTasks,
+                            indexMediumPriorityTasks,
+                            indexLittlePriorityTasks
+                        ],
+                        borderWidth : 6,
+                        hoverBorderColor : 'white',
+                        backgroundColor: [
+                            color(window.chartColors.red).alpha(0.7).rgbString(),
+                            color(window.chartColors.yellow).alpha(0.7).rgbString(),
+                            color(window.chartColors.green).alpha(0.7).rgbString(),
+                        ],
+                        label: 'Dataset 1'
+                    }],
+                    labels: [
+                        'Large',
+                        'Medium',
+                        'Little',
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    cutoutPercentage: 70,
+                    legend: {
+                        position: 'bottom',
+                        display: false,
+                    },
+                    title: {
+                        display: false,
+                        text: 'Chart.js Doughnut Chart'
+                    },
+                    animation: {
+                        animateScale: true,
+                        animateRotate: true
+                    }
+                }
+            });
+        }
+    </script>
 </div>
 </body>
 </html>

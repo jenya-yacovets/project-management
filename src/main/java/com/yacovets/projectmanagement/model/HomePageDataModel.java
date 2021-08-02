@@ -16,5 +16,9 @@ public class HomePageDataModel {
     private List<Project> projects;
     private List<Board> boards;
     private List<Task> tasks;
-    private long countTaskCompleted;
+    private int indexCompletedStatusTasks;
+    private int indexInProcessingStatusTasks;
+    private int indexLittlePriorityTasks;
+    private int indexMediumPriorityTasks;
+    private int indexLargePriorityTasks;
 }
